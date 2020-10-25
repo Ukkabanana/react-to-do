@@ -9,12 +9,40 @@ function Todo({ todo }) {
   );
 }
 
+function TodoForm({ addTodo }) {
+  const [value, setValue] = React.useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!value) return;
+    addTodo(value);
+    setValue("");
+    console.log(e)
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        className="input"
+        value={value}
+        onChange={e => setValue(e.target.value)}
+      />
+    </form>
+  );
+}
+
 function App() {
   const [todos, setTodos] = useState([
     { text: "Learn about React" },
     { text: "Meet friend for lunch" },
     { text: "Build really cool todo app" }
   ]);
+
+  const addTodo = text => {
+    const newTodos = [...todos, {text}];
+    setTodos(newTodos);
+  }
 
   return (
     <div className="app">
@@ -26,6 +54,7 @@ function App() {
             todo={todo}
           />
         ))}
+        <TodoForm addTodo={addTodo} />
       </div>
     </div>
   );
