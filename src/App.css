@@ -8,6 +8,7 @@
   background: #e8e8e8;
   border-radius: 4px;
   max-width: 400px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25);
   padding: 5px;
 }
 
